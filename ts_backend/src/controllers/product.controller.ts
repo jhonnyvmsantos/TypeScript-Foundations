@@ -14,12 +14,12 @@ router.get("/", async (req: Request, res: Response) => {
     const data : Product[] = services.getAllProducts();
 
     if (data.length > 0) {
-      return res.status(200).send({ data: data });
+      return res.status(200).json(data);
     } else {
       return res.status(204).end();
     }
   } catch (error) {
-    res.status(500).send({ message: `Erro ao tenrar buscar os dados. ${error}` })
+    res.status(404).json({ message: `Erro ao tentar buscar os dados. ${error}` });
   }
 });
 
@@ -29,13 +29,12 @@ router.get("/unique/:id", async (req: Request, res: Response) => {
     const data : Product | undefined = services.getProductById(param);
 
     if (data !== undefined) {
-      return res.status(200).send({ data: data });
+      return res.status(200).json(data);
     } else {
       return res.status(204).end();
     }
   } catch (error) {
-    const message : string = `Erro ao tenrar buscar os dados. ${error}`
-    res.status(500).send({ message: `Erro ao tenrar buscar os dados. ${error}` })
+    res.status(404).json({ message: `Erro ao tentar buscar os dados. ${error}` });
   }
 });
 
