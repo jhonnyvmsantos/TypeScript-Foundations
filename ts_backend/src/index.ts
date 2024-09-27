@@ -3,7 +3,7 @@ import cors from 'cors';
 import routes from './routes';
 
 const app = express();
-const port : number = 3000;
+const port : number = 3333;
 
 app.use(cors());
 
